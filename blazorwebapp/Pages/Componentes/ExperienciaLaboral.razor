@@ -1,0 +1,73 @@
+﻿@using blazorwebapp.Data
+
+<div class="container-fluid mt-2 shadow p-1 mb-3 rounded" style=" min-width: 550px;">
+    <div class="container-fluid bg-secondary mt-0">
+        <div class="row">
+            <div class="col-8 text-start p-1">
+                <h1>Experiencia Laboral</h1>
+            </div>
+            <div class="col-4 text-end">
+                <!--<fa-icon [icon]="faSquarePlus" (click)="openDialog()" style="font-size:30px;" class="btn"></fa-icon>-->
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        
+        @for (int i= 0; i< ExpTable.Count; i++)
+        {            
+                <div class="container-fluid ps-4 shadow-sm p-1 my-3 rounded">
+                    <div class="row">
+                        <div class="col-8">
+                        <h2>@ExpTable[i].Empresa</h2>
+                    </div>
+                        <div class="col-4 text-end p-0">
+                            <!-- <fa-icon [icon]="faPenToSquare" (click)="onedit(item.id)" style="font-size:20px;" class="btn"></fa-icon>-->
+                            <!--<fa-icon [icon]="faTrash" (click)="borrarElemento(item.id)" style="font-size:20px;" class="btn"></fa-icon>-->
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-4 text-center shadow-sm" style="max-width:200px; max-height: 200px;">
+                            <img src="/assets/images/324409.png" class="img-fluid" />
+                        </div>
+                        <div class="col-8 text-start">
+                        <p>@ExpTable[i].Descripcion</p>
+                        <p>@ExpTable[i].Ubicacion</p>
+                        </div>
+                    </div>
+                </div>           
+        }
+    </div>
+</div>
+
+@code {
+
+
+
+    List<experienciaLaboralModel> ExpTable = new();
+    Task createTable()
+    {
+        return Task.Factory.StartNew(() =>
+        ExpTable.AddRange(new List<experienciaLaboralModel>
+                         {
+                         new experienciaLaboralModel { Empresa = "Maxi", Descripcion ="administrativo B" , Ubicacion ="Santiago del estero"},
+                         new experienciaLaboralModel {  Empresa = "Casino Status", Descripcion ="cajero" , Ubicacion ="tierra del fuego" },
+                         new experienciaLaboralModel {  Empresa = "Popper", Descripcion ="Administrativo" }
+                         }));
+    }
+
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        await createTable();
+    }
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {       
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+
+
+}
