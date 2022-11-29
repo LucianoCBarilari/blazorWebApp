@@ -1,7 +1,12 @@
-﻿namespace blazorwebapp.Data
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace blazorwebapp.Data
 {
-    public class experienciaLaboralModel
+    [Table("ExperienciaLaboral")]
+    public class ExperienciaLaboralModel
     {
+        [Key]
         public int Id { get; set; }
         public string? Empresa { get; set; }
         public string? Descripcion { get; set; }

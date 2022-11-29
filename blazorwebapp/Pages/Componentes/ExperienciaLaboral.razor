@@ -45,15 +45,15 @@
 
 
 
-    List<experienciaLaboralModel> ExpTable = new();
+    List<ExperienciaLaboralModel> ExpTable = new();
     Task createTable()
     {
         return Task.Factory.StartNew(() =>
-        ExpTable.AddRange(new List<experienciaLaboralModel>
+        ExpTable.AddRange(new List<ExperienciaLaboralModel>
                          {
-                         new experienciaLaboralModel { Empresa = "Maxi", Descripcion ="administrativo B" , Ubicacion ="Santiago del estero"},
-                         new experienciaLaboralModel {  Empresa = "Casino Status", Descripcion ="cajero" , Ubicacion ="tierra del fuego" },
-                         new experienciaLaboralModel {  Empresa = "Popper", Descripcion ="Administrativo" }
+                         new ExperienciaLaboralModel { Empresa = "Maxi", Descripcion ="administrativo B" , Ubicacion ="Santiago del estero"},
+                         new ExperienciaLaboralModel {  Empresa = "Casino Status", Descripcion ="cajero" , Ubicacion ="tierra del fuego" },
+                         new ExperienciaLaboralModel {  Empresa = "Popper", Descripcion ="Administrativo" }
                          }));
     }
 

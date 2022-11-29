@@ -3,6 +3,8 @@ using blazorwebapp.Data;
 using blazorwebapp.Repository;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Policy;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +13,14 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 
-var mySQLConfiguration = new MySqlConfiguration(builder.Configuration.GetConnectionString("MySqlConnection"));
-builder.Services.AddSingleton(mySQLConfiguration);
+// connectionString = builder.Configuration.GetConnectionString("default")
+//?? throw new NullReferenceException("no connection string");
 
-builder.Services.AddScoped<IAcercaDeRepository,AcercaDeRepository>();
+//builder.Services.AddDbContextFactory<Portweb>((DbContextOptionsBuilder options)=> options.UseMySQL(connectionString));
+
+//var mySQLConfiguration = new MySqlConfiguration(builder.Configuration.GetConnectionString("MySqlConnection"));
+//builder.Services.AddSingleton(mySQLConfiguration);
+//builder.Services.AddScoped<IAcercaDeRepository,AcercaDeRepository>();
 
 
 var app = builder.Build();
