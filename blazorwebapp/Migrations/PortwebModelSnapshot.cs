@@ -40,7 +40,7 @@ namespace blazorwebapp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AcercaDe");
+                    b.ToTable("AcercaDeModel");
                 });
 
             modelBuilder.Entity("blazorwebapp.Data.ExperienciaLaboralModel", b =>
@@ -62,7 +62,7 @@ namespace blazorwebapp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExperienciaLaboral");
+                    b.ToTable("ExperienciaLaboralModel");
                 });
 #pragma warning restore 612, 618
         }

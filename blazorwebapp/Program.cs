@@ -1,30 +1,28 @@
 using blazorwebapp;
 using blazorwebapp.Data;
-using blazorwebapp.Repository;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using blazorwebapp.Services;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Policy;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddTransient<ExperiencialaboralService>();
 
 
-// connectionString = builder.Configuration.GetConnectionString("default")
-//?? throw new NullReferenceException("no connection string");
+//var connectionString = builder.Configuration.GetConnectionString("MySqlConnection") ?? throw new NullReferenceException("test connection string");
+//builder.Services.AddSingleton(connectionString);
+var connectionString = builder.Configuration.GetConnectionString("MySqlConnection") ?? throw new NullReferenceException("test connection string");
 
-//builder.Services.AddDbContextFactory<Portweb>((DbContextOptionsBuilder options)=> options.UseMySQL(connectionString));
+builder.Services.AddDbContextFactory<Portweb>((DbContextOptionsBuilder options)=> options.UseSqlServer(connectionString));
 
-//var mySQLConfiguration = new MySqlConfiguration(builder.Configuration.GetConnectionString("MySqlConnection"));
-//builder.Services.AddSingleton(mySQLConfiguration);
+
 //builder.Services.AddScoped<IAcercaDeRepository,AcercaDeRepository>();
 
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

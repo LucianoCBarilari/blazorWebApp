@@ -1,4 +1,6 @@
 ﻿@using blazorwebapp.Data
+@using blazorwebapp.Controller
+
 
 <PageTitle>Acerca De</PageTitle>
 
@@ -45,6 +47,8 @@
 @code {
 
     List<AcercaDeModel> AcercaTable = new();
+
+
     Task  createTable()
     {
         return Task.Factory.StartNew(() => AcercaTable.AddRange (new List<AcercaDeModel>
@@ -55,6 +59,14 @@
 
     }
 
+
+
+   
+
+
+
+
+
     Task Saludar()
     {
         return Task.Run(() => Console.WriteLine("saludop"));  
@@ -63,12 +75,20 @@
     protected override async Task OnInitializedAsync()
     {
         await createTable();
-        
     }
     protected override Task OnAfterRenderAsync(bool firstRender)
-    {
+    {        
         Saludar();
         return base.OnAfterRenderAsync(firstRender);
     }
+
+    /*async Task<IEnumerable<AcercaDeModel>> get()
+    {
+        //var db = dbConnection();
+
+        var sql = @"SELECT  * FROM AcercaDeModel";
+
+        return await db.QueryAsync<AcercaDeModel>(sql, new { });
+     }*/
 
 }

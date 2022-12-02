@@ -1,0 +1,39 @@
+﻿<h1 class="text-center" mat-dialog-title>Nueva Experiencia Laboral</h1>
+<div class="">
+    <form >
+        <div class="">
+            <div class="">
+                <label>Nombre de la Empresa</label><br>
+                <input class="form-control" @bind="empresa" ><br>
+                <label>Descripcion</label><br>
+                <textarea class="form-control" @bind="descripcion" type="textarea" ></textarea><br>
+                <label>ubicacion</label><br>
+                <input class="form-control" type="text" ><br><br>
+            </div>
+            <div  class="text-center" mat-dialog-actions>
+              <button >Guardar</button>
+              <button >Cancelar</button>
+
+            </div> 
+            <div>
+                <p>
+                    @empresa
+                </p>
+            </div>
+            <div>
+                <p>
+                    @descripcion
+                </p>
+
+            </div>
+
+        </div>
+
+    </form> 
+</div>
+
+@code {
+    
+    public string? empresa;
+    public string? descripcion;
+}

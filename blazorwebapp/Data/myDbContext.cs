@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 
 namespace blazorwebapp.Data
 {
@@ -8,11 +7,11 @@ namespace blazorwebapp.Data
     public class Portweb : DbContext
     {
 
-
+        
         
         /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost:3306;database=portweb;user=root;password=clever");
+            optionsBuilder.UseMySQL("server=localhost;port=3306;database=portweb;uid=root;password=clever");
         }*/
 
         public Portweb(DbContextOptions<Portweb> options) : base(options)
@@ -20,18 +19,17 @@ namespace blazorwebapp.Data
             public DbSet<AcercaDeModel> AcercaDeModel { get; set; }
             public DbSet<ExperienciaLaboralModel> ExperienciaLaboralModel { get; set; }
 
-
+        /*
         public class YourDbContextFactory : IDesignTimeDbContextFactory<Portweb>
         {
             public Portweb CreateDbContext(string[] args)
             {
                 var optionsBuilder = new DbContextOptionsBuilder<Portweb>();
-                optionsBuilder.UseSqlServer("defaultConn");
+                optionsBuilder.UseMySQL("defaultConn");
 
                 return new Portweb(optionsBuilder.Options);
-            }
+            }*/
           
-        }
         /*
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,7 +42,7 @@ namespace blazorwebapp.Data
                 entity.Property(e => e.Apellido);
                 entity.Property(e => e.Descripcion);       
             });  
-            modelBuilder.Entity<experienciaLaboralModel>(entity =>
+            modelBuilder.Entity<ExperienciaLaboralModel>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Empresa);

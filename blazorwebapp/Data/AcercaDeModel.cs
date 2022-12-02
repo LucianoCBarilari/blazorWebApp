@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace blazorwebapp.Data
 {
-    [Table("AcercaDe")]
+    //[Table("AcercaDe")]
     public class AcercaDeModel
     {
         [Key]

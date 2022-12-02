@@ -1,4 +1,6 @@
 ﻿@using blazorwebapp.Data
+@using blazorwebapp.Services
+@inject ExperiencialaboralService experienciaServices;
 
 <div class="container-fluid mt-2 shadow p-1 mb-3 rounded" style=" min-width: 550px;">
     <div class="container-fluid bg-secondary mt-0">
@@ -13,7 +15,7 @@
     </div>
 
 
-    <div>
+   @*<div>
         
         @for (int i= 0; i< ExpTable.Count; i++)
         {            
@@ -36,16 +38,62 @@
                         <p>@ExpTable[i].Ubicacion</p>
                         </div>
                     </div>
-                </div>           
+                </div>          
         }
+    </div>*@
     </div>
+
+
+
+
+
+<h1 class="text-center">Nueva Experiencia Laboral</h1>
+<div class="">
+    <EditForm Model=@experiencia OnValidSubmit="HandleSubmit">             
+           <label>Nombre de la Empresa</label>
+           <InputText  @bind-Value="@experiencia.Empresa"></InputText>
+           <label>Descripcion</label>
+           <InputText @bind-Value="@experiencia.Descripcion"></InputText>
+           <label>ubicacion</label>
+            <InputText @bind-Value="@experiencia.Ubicacion"> </InputText>
+            <button type="submit">cargar</button>
+    </EditForm>
 </div>
 
 @code {
 
+    ExperienciaLaboralModel experiencia = new ExperienciaLaboralModel();
+    List<ExperienciaLaboralModel> getExp = new(); 
+
+    //iniciar
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        getExp = experienciaServices.GetExperiencia();
+        foreach (var item in getExp)
+        {
+            Console.Write("Empresa: ");
+            Console.WriteLine(item.Empresa);
+            Console.Write("Descripcion: ");
+            Console.WriteLine(item.Descripcion);
+            Console.Write("Ubicacion: ");
+            Console.WriteLine(item.Ubicacion);
+            Console.WriteLine("***************");
+        }
+        
+                    
 
 
-    List<ExperienciaLaboralModel> ExpTable = new();
+        return base.OnAfterRenderAsync(firstRender);
+    }
+    //
+    public void HandleSubmit(EditContext edit)
+    {
+        var newExperiencia = (ExperienciaLaboralModel)edit.Model;
+        experienciaServices.AddExperiencia(newExperiencia);        
+    }
+
+    //ejemplos 
+    @*List<ExperienciaLaboralModel> ExpTable = new();
     Task createTable()
     {
         return Task.Factory.StartNew(() =>
@@ -57,17 +105,11 @@
                          }));
     }
 
-    
-
-    protected override async Task OnInitializedAsync()
+    protected override  async Task OnInitializeAsync()
     {
-        await createTable();
-    }
-    protected override Task OnAfterRenderAsync(bool firstRender)
-    {       
-        return base.OnAfterRenderAsync(firstRender);
-    }
-
+        await null;
+    }*@
+   
 
 
 }
